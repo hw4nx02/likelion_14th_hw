@@ -1,0 +1,343 @@
+a {
+    text-decoration: none;
+}
+
+.body-container {
+    background-color: #FFF6F2;
+    color: #222222;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+.navbar-container {
+    display: flex;
+    align-items: center;
+    padding: 20px 32px;
+    gap: 40px;
+    background-color: #E65C00;
+}
+
+.navbar-link {
+    color: #fff;
+    font-size: 18px;
+}
+
+.navbar-link:hover {
+    color: #222222;
+}
+
+.page-container {
+    padding: 40px 48px;
+}
+
+.tag {
+    color: #888888;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.title {
+    font-size: 48px;
+    font-weight: bold;
+    margin: 0 0 8px;
+}
+
+.welcome {
+    font-size: 32px;
+    margin: 0 0 40px;
+}
+
+.section-title {
+    color: #E65C00;
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.section {
+    border-left: 3px solid #E65C00;
+    padding-left: 16px;
+    margin-bottom: 28px;
+}
+
+.section ul {
+    margin: 0;
+    padding-left: 20px;
+    color: #555555;
+}
+
+.section li {
+    margin-bottom: 6px;
+}
+
+.introduce-section {
+    width: 100%;
+    height: 500px;
+    margin-bottom: 100px;
+
+    display: flex;
+}
+
+.left-section { 
+    width: 300px;
+}
+
+.right-section {
+    margin-left: 100px;
+}
+
+.code-block {
+    width: 30%;
+    padding: 1rem;
+    background: #2A2C33;
+    border-radius: 10px;
+    color: #9FA4B1;
+    font-family: "Google Sans Code", "monospace";
+    font-size: 0.75rem;
+}
+
+.tag {
+    color: #C96F6F;
+}
+
+.attr {
+    color: #C19B69;
+}
+
+.string {
+    color: #A3C06B;
+}
+
+.func {
+    color: #D1D1AC;
+}
+
+.keyword {
+    color: #769AC9;
+}
+
+.return {
+    color: #B699C0;
+}
+
+.arg {
+    color: #ACC5DD;
+}
+
+body:has(#about-setting-checkbox:checked) #about-setting {
+    background-color: yellow;
+    transition: background-color 0.3s ease;
+}
+
+#hello {
+    font-size: 1.5em;
+}
+
+#im {
+    font-size: 1.7em;
+}
+
+#major {
+    font-size: 1.9em;
+}
+
+#student-number {
+    font-size: 2.1em;
+}
+
+#old {
+    font-size: 2.3em;
+}
+
+#name {
+    font-size: 2.5em;
+}
+
+.hover-big {
+    display: inline-block;
+    font-weight: bold;
+}
+
+.hover-big:hover {
+    transform: scale(2);
+}
+
+.video {
+    position: relative;
+    width: 100%;
+}
+
+.video-back {
+    width: 100%;
+    display: block;
+}
+
+.video-front {
+    position: absolute;
+    width: 40%;
+    display: block;
+    top: 35%;
+    left: 30%;
+    z-index: 10;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease;
+}
+
+.video:hover .video-front {
+    opacity: 0.7;
+    visibility: visible;
+}
+
+.video:has(#drop:checked) .video-front {
+    animation-name: drop;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+}
+
+@keyframes drop {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(1000px);
+    }
+}
+
+body:has(#move-navbar-checkbox:checked) .navbar-container {
+    animation-name: vertical-move;
+    animation-duration: 6s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: ease;
+}
+
+@keyframes vertical-move {
+    0% {
+        transform: translateY(0);
+    }   
+    100% {
+        transform: translateY(1000px);
+    }
+}
+
+.callout {
+    display: flex;
+    width: 50%;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    background: #383836;
+    padding-inline: 12px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    color: white;
+}
+
+body:has(#invisible-readme-checkbox:checked) .callout {    
+    animation-name: invisible;
+    animation-duration: 2s;
+    animation-timing-function: ease;
+    overflow: hidden;
+    animation-fill-mode: forwards;
+}
+
+@keyframes invisible {
+    0% {
+        opacity: 1;
+        visibility: visible;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+body:has(#grow-shrink-checkbox:checked) #name {
+    animation-name: grow-shrink;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: ease;
+}
+
+@keyframes grow-shrink {
+    0% {
+        font-size: 1.5em;
+    }
+    100% {
+        font-size: 20em;
+    }
+}
+
+body:has(#change-bgcolor-checkbox:checked) {
+    animation-name: change-bgcolor;
+    animation-duration: 1s;
+    animation-iteration-count: 10;
+    animation-direction: normal;
+    animation-timing-function: steps(10);
+}
+
+@keyframes change-bgcolor {
+    0% { background-color: #ff0000;}
+    10% { background-color: #ff5f00;}
+    20% { background-color: #ffff00;}
+    30% { background-color: #00ff00;}
+    40% { background-color: #00ffff;}
+    50% { background-color: #0000ff;}
+    60% { background-color: #8a00ff;}
+    70% { background-color: #ff00ff;}
+    80% { background-color: #ff1493;}
+    90% { background-color: #ffffff;}
+    100% { background-color: #ff0000;}
+}
+
+body:has(#move-title-checkbox:checked) .title {
+    animation-name: move-title;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes move-title {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(1000px);
+    }
+}
+
+.windows-img {
+    display: none;
+    opacity: 0;
+    transition: opacity 1s ease-in;
+}
+
+body:has(#show-img-checkbox:checked) .windows-img {
+    display: block;
+    opacity: 1;
+}
+
+#student-number {
+    display: inline-block;
+}
+
+body:has(#move-number-checkbox:checked) #student-number {
+    animation-name: move-number;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease;
+}
+
+@keyframes move-number {
+    0% { transform: translate(0, 0); }
+    12%{ transform: translate(500px, -500px) rotate(45deg);}
+    25% { transform: translate(1000px, 500px) rotate(90deg);}
+    50% { transform: translate(500px, 1000px) rotate(180deg);}
+    75% { transform: translate(-500px, 500px) rotate(270deg);}
+    100% { transform: translate(0, 0) rotate(360deg);}
+}

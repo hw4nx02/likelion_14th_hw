@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="page-container">
+    {% include 'shared/_header.html' %}
+    <div class="introduce-section">
+        <div class="left-section">
+            <!-- <div class="callout">
+                <label id="invisible-readme" for="invisible-readme-checkbox">
+                    <b>💡README!</b><br />
+                    &ensp;&ensp;재미를 위해 각 요소마다 이벤트를 넣어놨습니다...<br />
+                    &ensp;&ensp;부디 하나씩 눌러보며 즐겨주시길...
+                </label>
+                <input type="checkbox" id="invisible-readme-checkbox" style="display: none;">
+            </div> -->
+            <div class="video">
+                <img class="video-back" src="{% static 'images/image.png' %}" alt="video" />
+
+                <input type="checkbox" id="drop" hidden>
+                <label for="drop">
+                    <img class="video-front" src="{% static 'images/image2.png' %}" alt="video" />
+                </label>
+            </div>
+        </div>
+
+        <div class="right-section">
+            <label id="hello" class="hover-big" for="move-title-checkbox">안녕하세요</label>
+            <input type="checkbox" id="move-title-checkbox" style="display: none;">
+            <br />
+            <label id="im" class="hover-big" for="move-navbar-checkbox">저는</label>
+            <input type="checkbox" id="move-navbar-checkbox" style="display: none;">
+            <br />
+            <label id="major" class="hover-big" for="show-img-checkbox">컴퓨터공학전공</label>
+            <input type="checkbox" id="show-img-checkbox" style="display: none;">
+            <img class="windows-img" src="{% static 'images/xp.png' %}" alt="윈도우" width="50%" />
+            <br />
+            <label id="student-number" class="hover-big" for="move-number-checkbox">22학번</label>
+            <input type="checkbox" id="move-number-checkbox" style="display: none;">
+            <br />
+            <label id="old" class="hover-big" for="change-bgcolor-checkbox">02년생</label>
+            <input type="checkbox" id="change-bgcolor-checkbox" style="display: none;">
+            <br />
+            <label id="name" class="hover-big" for="grow-shrink-checkbox">이창환입니다</label>
+            <input type="checkbox" id="grow-shrink-checkbox" style="display: none;">
+            <br />
+        </div>
+    </div>
+
+    <div>
+        <h3>좋아하는 것: 맛있는 거, 농구, OTT </h3>
+        <h3>싫어하는 것: 과제</h3>
+        <h3>MBTI: ISTP</h3>
+    </div>
+</div>
+{% endblock %}

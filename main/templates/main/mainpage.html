@@ -1,0 +1,187 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="page-container">
+    {% include 'shared/_header.html' %}
+
+    <div class="section">
+        <div class="section-title">🦁 Django MTV 패턴 🦁</div>
+        <ul>
+            <li><b>M</b>odel: DB에 저장되는 데이터 구조</li>
+            <li><b>T</b>emplates: 화면</li>
+            <li><b>V</b>iew: 사용자가 URL을 통해 접근하여, 적절한 로직을 수행한 뒤 화면을 리턴함</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <div class="section-title">🦁 Template 🦁</div>
+        <p>기본적으로 HTML을 통해 화면을 구성한다.<br />
+            프로젝트의 "앱/templates/앱/"의 경로에 html 파일을 작성한다.</p>
+        <h5>Template 언어 활용</h5>
+        <ul>
+            <li>
+                <h6>URL 연결</h6>
+                <div class="code-block">
+                    <p>
+                        // urls.py에서 지정한 URL의 별명을 입력<br />
+                        &lt;<span class="tag">a</span> <span class="attr">href</span>=<span class="string">"{&#37; url
+                            '별명' &#37;}"</span> &gt;
+                    </p>
+                </div>
+            </li>
+            <li>
+                <h6>변수 사용</h6>
+                <ol>
+                    <li>View에 context 속성 추가</li>
+                    <li>context에 딕셔너리 형태로 변수 및 값 삽입</li>
+                    <li>render 메서드에 context 인자 넘기기</li>
+                    <li>html에서 &#123;&#123; 변수 &#125;&#125;의 형식으로 사용. 변수가 리스트 혹은 딕셔너리일 경우 '.인덱스' or '.key'와 같이 사용</li>
+                </ol>
+            </li>
+            <li>
+                <h6>반복문</h6>
+                <div class="code-block">
+                    <p>
+                        {&#37; for 아이템 in 리스트 &#37;}<br />
+                        &ensp;&ensp; &#123;&#123; 아이템 &#125;&#125;<br />
+                        {&#37; endfor &#37;}
+                    </p>
+                </div>
+            </li>
+            <li>
+                <h6>조건문</h6>
+                <div class="code-block">
+                    <p>
+                        &#123;&#37; if 조건 &#37;&#125;<br />
+                        &ensp;&ensp; 참인 경우<br />
+                        &#123;&#37; else &#37;&#125;<br />
+                        &ensp;&ensp; 거짓인 경우<br />
+                        &#123;&#37; endif &#37;&#125;
+                    </p>
+                </div>
+            </li>
+            <li>
+                <h6>필터</h6>
+                <p>변수와 함께 &#123;&#123; 변수|필터 &#125;&#125;의 형식으로 쓰임</p>
+            </li>
+        </ul>
+
+        <h5>Template 상속 - base.html</h5>
+        <p>
+            중복되는 코드를 project/templates의 파일(base.html)로 분리한다.<br />
+            이는 base.html 내부 block 태그로 지정한 위치에 앱의 templates 코드를 삽입하는 방식으로 작동한다.<br />
+            구현 방법은 아래와 같다.
+        </p>
+        <ol>
+            <li id="about-setting">
+                    project/templates 경로를 추가. project/settings.py에 아래와 같이 경로 추가
+                    <div class="code-block">
+                        <p>
+                            <span class="string">'DIRS'</span>: [os.path.join(BASE_DIR, 'project', 'templates')]
+                        </p>
+                    </div>
+                
+            </li>
+            <li>project 디렉토리에 templates 폴더 생성</li>
+            <li>templates 폴더에 base.html 파일 생성</li>
+            <li>
+                project/templates/base.html에 화면별 코드를 삽입할 위치에 아래 태그를 추가
+                <div class="code-block">
+                    <p>
+                        &#123;&#37; block 이름 &#37;&#125;<br />
+                        &#123;&#37; endblock &#37;&#125;
+                    </p>
+                </div>
+            </li>
+            <li>app/templates/app/~.html에서 base.html에 있는 부분은 모두 삭제</li>
+            <li>
+                app/templates/app/~.html을 아래와 같은 구조로 수정
+                <div class="code-block">
+                    <p>
+                        // 맨 첫 줄<br />
+                        &#123;&#37; extends '아래 블록이 들어갈 공통 html' &#37;&#125;<br /><br />
+
+                        &#123;&#37; block 이름 &#37;&#125;<br />
+                        &ensp;&ensp;// 공통 html에 들어갈 블록 내용<br />
+                        &#123;&#37; block 이름 &#37;&#125;
+                    </p>
+                </div>
+            </li>
+        </ol>
+
+        <h5>Template 상속 - navbar 상속</h5>
+        <p>base.html외에도 중복되는 컴포넌트가 있을 때 분리해서 관리할 수 있다. 이러한 경우 include 태그를 사용한다.</p>
+        <ol>
+            <li>
+                <label id="about-setting-click" for="about-setting-checkbox">
+                   project/templates 경로를 추가. 자세한 사항은 클릭
+                </label>
+                <input type="checkbox" id="about-setting-checkbox" style="display: none;">
+            </li>
+            <li>project/templates/shared 폴더 생성</li>
+            <li>중복되는 부분을 project/templates/shared/~.html에 옮기기</li>
+            <li>잘라낸 곳에 {&#37; include 'shared/컴포넌트.html' &#37;}를 사용하여 중복되는 컴포넌트 상속시키기</li>
+        </ol>
+        <h5>정적 파일 분리</h5>
+        <ol>
+            <li>project/static/css, project/static/images 폴더 생성</li>
+            <li>project/static/css에는 css 파일을, project/static/images에는 이미지 파일 넣기</li>
+            <li>
+                삽입을 원하는 파일에 아래와 같이 작성
+                <div class="code-block">
+                    <p>
+                        &lt;!DOCTYPE html &gt;<br/>
+                        &#123;&#37; load static &#37;&#125;<br/>
+                        ...<br/>
+                        &lt;head&gt;<br/>
+                        &ensp;&ensp;&lt;<span class="keyword">link</span> <span class="arg">rel</span>=<span class="string">stylesheet</span> <span class="arg">type</span>=<span class="string">"text/css"</span> <span class="arg">href</span>=<span class="string">"&#123;&#37; 'css/project.css' &#37;&#125;"</span>
+                    </p>
+                </div>
+            </li>
+            <li>
+                정적 파일 경로 설정
+                <div class="code-block">
+                    <p>// 오타 주의!!</p>
+                    <p><span class="arg">STATICFILES_DIRS</span> = [os.path.join(BASE_DIR, 'project', 'static')]</p>
+                    <p><span class="arg">STATIC_ROOT</span> = [os.path.join(BASE_DIR, 'static')]</p>
+                </div>
+            </li>
+        </ol>
+    </div>
+
+    <div class="section">
+        <div class="section-title">🦁 View 🦁</div>
+        <p>
+            View는 정해진 로직을 처리하고, Template를 리턴하는 역할을 한다.<br />
+            때문에, (1) View에서 어떤 로직을 수행할 지 작성한 뒤, (2) View가 어떤 Template를 리턴할 지 지정하고 (3) View와 연결될 URL을 설정해 주어야 한다.
+        </p>
+        <ol>
+            <li>
+                <h6>View 로직 작성 및 리턴 template 지정</h6>
+                <div class="code-block">
+                    <p>
+                        <span class="keyword">def</span> <span class="func">view이름</span>(<span
+                            class="arg">request</span>):<br />
+                        &ensp;&ensp;<span>로직 작성</span><br />
+                        &ensp;&ensp;<span class="return">return</span> <span class="func">render</span>(<span
+                            class="arg">request</span>, <span class="string">'리턴할 template의 경로'</span>)
+                    </p>
+                </div>
+            </li>
+            <li>
+                <h6>URL 설정</h6>
+                <p>urls.py의 urlpatterns에 url을 작성한다.</p>
+                <div class="code-block">
+                    <p>
+                        <span class="arg">urlpatterns</span> = [<br />
+                        &ensp;&ensp;<span class="func">path</span>(<span class="string">'admin/'</span>,
+                        admin.site.urls)<br />
+                        &ensp;&ensp;<span class="func">path</span>(<span class="string">'url'</span>, <span
+                            class="func">연결될 view</span>, <span class="string">'별명'</span>)<br />
+                        ]
+                    </p>
+                </div>
+            </li>
+        </ol>
+    </div>
+</div>
+{% endblock %}
