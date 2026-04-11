@@ -7,4 +7,4 @@
 - 2주차<br/>
 Django 기초: 웹페이지 만들어보기
 - 3주차<br/>
-Django CRUD 구현: 게시글 모델 Post 생성
+Django CRUD 구현: 게시글 모델(Post) 생성 후 CRUD 구현
