@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="detail-wrapper">
+
+    <div class="detail-header">
+        <h1>{{ post.title }}</h1>
+        <p>{{ post.category }}</p>
+    </div>
+
+    <div class="detail-footer">
+        <span>작성자: {{ post.writer }}</span>
+        <span>작성일: {{ post.pub_date }}</span>
+    </div>
+
+    <div class="detail-body">
+        {% if post.image %}
+            <img class="detail-image" src="{{ post.image.url }}" alt="이미지">
+        {% endif %}
+        <p>{{ post.content }}</p>
+    </div>
+
+    <div class="detail-actions">
+        <a href="{% url 'main:edit_post' post.id %}" class="btn-outline">수정</a>
+        <a href="{% url 'main:delete_post' post.id %}" class="btn-danger">삭제</a>
+        <a href="{% url 'main:blog' %}" class="btn-primary">목록으로</a>
+    </div>
+
+</div>
+{% endblock %}

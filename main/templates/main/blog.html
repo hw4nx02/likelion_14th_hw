@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<div class="card-grid">
+    {% for post in posts %}
+        <div class="card">
+            <div class="card-content">
+                <h2>{{ post.title }}</h2>
+                <p class="card-category">{{ post.category }}</p>
+                <div class="card-header">
+                    <p>{{ post.writer }}</p>
+                    <p>{{ post.pub_date }}</p>
+                </div>
+                <div class="divider"></div>
+                <div class="card-image-wrapper">
+                    {% if post.image %}
+                        <img class="card-image" src="{{ post.image.url }}" alt="이미지">
+                    {% else %}
+                        <div class="empty-image"></div>
+                    {% endif %}
+                </div>
+                <p class="card-summary">{{ post.summary }}</p>
+            </div>
+
+            <div class="card-footer">
+                <div class="divider"></div>
+                <a href="{% url 'main:post_detail' post.id %}">자세히 보기</a>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+<div class="bottom-wrapper">
+    <img class='add-button' src="{% static 'images/icon-add-orange.png' %}" alt="글 작성 버튼"
+        onClick="location.href='{% url 'main:new_post' %}'">
+</div>
+{% endblock %}

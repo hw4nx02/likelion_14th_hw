@@ -1,6 +1,8 @@
 <nav class="navbar-container">
     <!-- mainpage 링크 연결 -->
-    <a class="navbar-link" href="{% url 'mainpage' %}">DGU_likelion_14th</a>
+    <a class="navbar-link" href="{% url 'main:mainpage' %}">DGU_likelion_14th</a>
     <!-- secondpage 링크 연결 -->
-    <a class="navbar-link" href="{% url 'secondpage' %}">Ja-Gi-So-Gae</a>
+    <a class="navbar-link" href="{% url 'main:secondpage' %}">Ja-Gi-So-Gae</a>
+    <!-- post 링크 연결 -->
+    <a class="navbar-link" href="{% url 'main:blog' %}">블로그</a>
 </nav>

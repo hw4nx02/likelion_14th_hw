@@ -341,3 +341,177 @@ body:has(#move-number-checkbox:checked) #student-number {
     75% { transform: translate(-500px, 500px) rotate(270deg);}
     100% { transform: translate(0, 0) rotate(360deg);}
 }
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 294px);
+    justify-content: space-evenly;
+    gap: 60px;
+}
+
+.card {
+    width: 294px;
+    height: 600px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.15);
+    margin: 20px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-header {
+    font-size: 16px;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.card-category {
+    color: #555555;
+}
+
+.card-image, .empty-image {
+    width: 294px;
+    height: 296px;
+    object-fit: cover;
+}
+
+.bottom-wrapper {
+    width: 100%;
+}
+
+.add-button {
+    display: block;
+    margin: 0 auto;
+}
+
+.form-title {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+label {
+    font-size: 16px;
+    font-weight: 500;
+    color: #111;
+}
+
+input,
+textarea {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+    transition: border 0.2s ease;
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* 포커스 시 기존 브랜드 컬러 */
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: #fb6327;
+}
+
+/* 버튼 */
+button {
+    margin-top: 10px;
+    padding: 14px;
+    border-radius: 6px;
+    border: none;
+    background: #fb6327;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        transform 0.1s ease;
+}
+
+button:hover {
+    background: #e4571f;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* ===== 상세 페이지 ===== */
+
+.detail-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* 제목 */
+.detail-wrapper h1 {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #111;
+}
+
+/* 본문 */
+.detail-wrapper p {
+    font-size: 18px;
+    line-height: 1.7;
+    color: #505050;
+    margin-bottom: 32px;
+    white-space: pre-line; /* 줄바꿈 유지 */
+}
+
+.detail-body {
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+.detail-image {
+    max-width: 750px;
+    margin: 0 auto;
+    object-fit: cover;
+}
+
+/* 하단 정보 영역 */
+.detail-footer {
+    border-top: 1px solid #ddd;
+    padding-top: 16px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #999;
+}
+
+/* 강조 포인트 */
+.detail-footer span:first-child {
+    color: #fb6327;
+    font-weight: 500;
+}
+
+.nav-item a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: inherit;
+}
