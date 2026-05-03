@@ -1,3 +1,40 @@
+/* 헤더 */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 16px;
+    background: #f5f5f5;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.logo {
+    width: 272px;
+    height: 48px;
+}
+
+.brand-name {
+    font-size: 32px;
+    color: #fb6327;
+    font-weight: 400;
+}
+
+.header-right {
+    display: flex;
+    gap: 20px;
+}
+
+.header-right .icon {
+    width: 24px;
+    height: 24px;
+    background: #f5f5f5;
+}
+
 a {
     text-decoration: none;
 }
@@ -78,7 +115,7 @@ a {
     display: flex;
 }
 
-.left-section { 
+.left-section {
     width: 300px;
 }
 
@@ -201,6 +238,7 @@ body:has(#about-setting-checkbox:checked) #about-setting {
     0% {
         transform: translateY(0);
     }
+
     100% {
         transform: translateY(1000px);
     }
@@ -217,7 +255,8 @@ body:has(#move-navbar-checkbox:checked) .navbar-container {
 @keyframes vertical-move {
     0% {
         transform: translateY(0);
-    }   
+    }
+
     100% {
         transform: translateY(1000px);
     }
@@ -235,7 +274,7 @@ body:has(#move-navbar-checkbox:checked) .navbar-container {
     color: white;
 }
 
-body:has(#invisible-readme-checkbox:checked) .callout {    
+body:has(#invisible-readme-checkbox:checked) .callout {
     animation-name: invisible;
     animation-duration: 2s;
     animation-timing-function: ease;
@@ -248,6 +287,7 @@ body:has(#invisible-readme-checkbox:checked) .callout {
         opacity: 1;
         visibility: visible;
     }
+
     100% {
         opacity: 0;
         visibility: hidden;
@@ -266,6 +306,7 @@ body:has(#grow-shrink-checkbox:checked) #name {
     0% {
         font-size: 1.5em;
     }
+
     100% {
         font-size: 20em;
     }
@@ -280,17 +321,49 @@ body:has(#change-bgcolor-checkbox:checked) {
 }
 
 @keyframes change-bgcolor {
-    0% { background-color: #ff0000;}
-    10% { background-color: #ff5f00;}
-    20% { background-color: #ffff00;}
-    30% { background-color: #00ff00;}
-    40% { background-color: #00ffff;}
-    50% { background-color: #0000ff;}
-    60% { background-color: #8a00ff;}
-    70% { background-color: #ff00ff;}
-    80% { background-color: #ff1493;}
-    90% { background-color: #ffffff;}
-    100% { background-color: #ff0000;}
+    0% {
+        background-color: #ff0000;
+    }
+
+    10% {
+        background-color: #ff5f00;
+    }
+
+    20% {
+        background-color: #ffff00;
+    }
+
+    30% {
+        background-color: #00ff00;
+    }
+
+    40% {
+        background-color: #00ffff;
+    }
+
+    50% {
+        background-color: #0000ff;
+    }
+
+    60% {
+        background-color: #8a00ff;
+    }
+
+    70% {
+        background-color: #ff00ff;
+    }
+
+    80% {
+        background-color: #ff1493;
+    }
+
+    90% {
+        background-color: #ffffff;
+    }
+
+    100% {
+        background-color: #ff0000;
+    }
 }
 
 body:has(#move-title-checkbox:checked) .title {
@@ -305,6 +378,7 @@ body:has(#move-title-checkbox:checked) .title {
     0% {
         transform: translateX(0);
     }
+
     100% {
         transform: translateX(1000px);
     }
@@ -334,12 +408,29 @@ body:has(#move-number-checkbox:checked) #student-number {
 }
 
 @keyframes move-number {
-    0% { transform: translate(0, 0); }
-    12%{ transform: translate(500px, -500px) rotate(45deg);}
-    25% { transform: translate(1000px, 500px) rotate(90deg);}
-    50% { transform: translate(500px, 1000px) rotate(180deg);}
-    75% { transform: translate(-500px, 500px) rotate(270deg);}
-    100% { transform: translate(0, 0) rotate(360deg);}
+    0% {
+        transform: translate(0, 0);
+    }
+
+    12% {
+        transform: translate(500px, -500px) rotate(45deg);
+    }
+
+    25% {
+        transform: translate(1000px, 500px) rotate(90deg);
+    }
+
+    50% {
+        transform: translate(500px, 1000px) rotate(180deg);
+    }
+
+    75% {
+        transform: translate(-500px, 500px) rotate(270deg);
+    }
+
+    100% {
+        transform: translate(0, 0) rotate(360deg);
+    }
 }
 
 .card-grid {
@@ -374,7 +465,8 @@ body:has(#move-number-checkbox:checked) #student-number {
     color: #555555;
 }
 
-.card-image, .empty-image {
+.card-image,
+.empty-image {
     width: 294px;
     height: 296px;
     object-fit: cover;
@@ -478,7 +570,8 @@ button:active {
     line-height: 1.7;
     color: #505050;
     margin-bottom: 32px;
-    white-space: pre-line; /* 줄바꿈 유지 */
+    white-space: pre-line;
+    /* 줄바꿈 유지 */
 }
 
 .detail-body {
@@ -514,4 +607,55 @@ button:active {
     gap: 12px;
     text-decoration: none;
     color: inherit;
+}
+
+/* ===== 마이페이지 ===== */
+
+.mypage-wrapper {
+    max-width: 1000px;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+/* 프로필 카드 */
+.profile-card {
+    background: #fff;
+    padding: 32px;
+    border-radius: 8px;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.profile-image {
+    width: 100px;
+    height: 100px;
+    background: #eee;
+    border-radius: 50%;
+}
+
+.profile-info h2 {
+    font-size: 28px;
+    margin: 0 0 8px 0;
+}
+
+.profile-email {
+    color: #999;
+    margin-bottom: 12px;
+}
+
+.profile-meta {
+    display: flex;
+    gap: 20px;
+    font-size: 14px;
+    color: #767676;
+}
+
+/* 섹션 */
+.mypage-section h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
 }
