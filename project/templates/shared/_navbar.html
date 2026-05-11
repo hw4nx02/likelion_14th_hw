@@ -6,18 +6,18 @@
     </div>
     <div class="header-right">
         {% if user.is_authenticated %}
-            {#                로그인 시 보이는 요소 => 로그아웃/마이페이지 버튼#}
-            <div>{{ user.username }}님 안녕하세요!</div>
-            <div class="auth-links">
-                <a href="{% url 'accounts:logout' %}">로그아웃</a>
-                <a href="{% url 'users:mypage' request.user.id %}">마이페이지</a>
-            </div>
+        {# 로그인 시 보이는 요소 => 로그아웃/마이페이지 버튼#}
+        <div>{{ user.username }}님 안녕하세요!</div>
+        <div class="auth-links">
+            <a href="{% url 'accounts:logout' %}">로그아웃</a>
+            <a href="{% url 'users:mypage' request.user.id %}">마이페이지</a>
+        </div>
         {% else %}
-            {#                로그아웃 시 보이는 요소 => 로그인/회원가입 버튼#}
-            <div class="auth-links">
-                <a href="{% url 'accounts:login' %}">로그인</a>
-                <a href="{% url 'accounts:signup' %}">회원가입</a>
-            </div>
+        {# 로그아웃 시 보이는 요소 => 로그인/회원가입 버튼#}
+        <div class="auth-links">
+            <a href="{% url 'accounts:login' %}">로그인</a>
+            <a href="{% url 'accounts:signup' %}">회원가입</a>
+        </div>
         {% endif %}
     </div>
 </header>
@@ -34,5 +34,11 @@
     <!-- post 링크 연결 -->
     <div class="nav-item {% if request.resolver_match.url_name == 'post' %}active{% endif %}">
         <a class="navbar-link" href="{% url 'main:blog' %}">블로그</a>
+    </div>
+    <div
+        class="nav-item {% if request.resolver_match.url_name == 'tag_list' or request.resolver_match.url_name == 'tag_blog_list' %}active{% endif %}">
+        <a class="nav-item" href="{% url 'main:tag_list' %}">
+            <span class="nav-label">태그</span>
+        </a>
     </div>
 </nav>
