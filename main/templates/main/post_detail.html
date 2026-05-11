@@ -64,12 +64,12 @@
                 </form>
                 {% else %}
                 <p class="comment-content">{{ comment.content }}</p>
-                {% endif %}
-                {% if comment.writer == user %}
-                <div class="comment-footer">
-                    <a href="{% url 'main:edit_comment' comment.id %}" class="comment-edit">수정</a>
-                    <a href="{% url 'main:delete_comment' comment.id %}" class="comment-delete">삭제</a>
-                </div>
+                    {% if comment.writer == user %}
+                    <div class="comment-footer">
+                        <a href="{% url 'main:edit_comment' comment.id %}" class="comment-edit">수정</a>
+                        <a href="{% url 'main:delete_comment' comment.id %}" class="comment-delete">삭제</a>
+                    </div>
+                    {% endif %}
                 {% endif %}
             </div>
             {% empty %}
