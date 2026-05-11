@@ -45,25 +45,26 @@ def create_post(request):
 
     return redirect("main:post_detail", new_post.id)
 
-def post_detail(request, post_id):
+def post_detail(request, post_id, edit_comment=-1):
     post = get_object_or_404(Post, pk=post_id)
 
     # 댓글 작성 (POST)
     # 로그인 사용자의 경우
-    if request.method == "POST" and request.user.is_authenticated:
-        new_comments = Comment() # Comment 객체 생성
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            new_comments = Comment() # Comment 객체 생성
 
-        # Comment 객체 채우기
-        new_comments.post = post
-        new_comments.writer = request.user
-        new_comments.content = request.POST["content"]
+            # Comment 객체 채우기
+            new_comments.post = post
+            new_comments.writer = request.user
+            new_comments.content = request.POST["content"]
 
-        new_comments.save()
-        return redirect("main:post_detail", post_id)
+            new_comments.save()
+            return redirect("main:post_detail", post_id)
 
     # 댓글 확인 (GET)
     comments = Comment.objects.filter(post=post)
-    return render(request, "main/post_detail.html", {"post": post, "comments": comments})
+    return render(request, "main/post_detail.html", {"post": post, "comments": comments, "edit_comment": edit_comment})
 
 def edit_post(request, post_id):
     if not request.user.is_authenticated:
@@ -72,7 +73,7 @@ def edit_post(request, post_id):
     edit_post = get_object_or_404(Post, pk=post_id)
 
     if edit_post.writer != request.user:
-        return redirect("main:detail", edit_post.id)
+        return redirect("main:post_detail", edit_post.id)
 
     return render(request, "main/edit_post.html", {"post": edit_post})
 
@@ -83,7 +84,7 @@ def update_post(request, post_id):
     update_post = get_object_or_404(Post, pk=post_id)
 
     if update_post.writer != request.user:
-        return redirect("main:detail", update_post.id)
+        return redirect("main:post_detail", update_post.id)
 
     update_post.title = request.POST["title"]
     update_post.writer = request.user
@@ -105,15 +106,37 @@ def delete_post(request, post_id):
     delete_post = get_object_or_404(Post, pk=post_id)
 
     if delete_post.writer != request.user:
-        return redirect("main:detail", delete_post.id)
+        return redirect("main:post_detail", delete_post.id)
 
     delete_post.delete()
 
     return redirect("main:blog")
 
 def edit_comment(request, comment_id):
-    comment = get_object_or_404(Comment, pk=comment_id)
+    if not request.user.is_authenticated:
+        return redirect("accounts:login")
     
+    edit_comment = get_object_or_404(Comment, pk=comment_id)
+
+    if edit_comment.writer != request.user:
+        return redirect("main:post_detail", edit_comment.post.id)
+    
+    return redirect("main:post_detail", edit_comment.post.id, edit_comment.id)
+
+def update_comment(request, comment_id):
+    if not request.user.is_authenticated:
+        return redirect("accounts:login")
+    
+    update_comment = get_object_or_404(Comment, pk=comment_id)
+
+    if update_comment.writer != request.user:
+        return redirect("main:post_detail", update_comment.post.id)
+    
+    update_comment.content = request.POST["content"]
+    update_comment.save()
+
+    return redirect("main:post_detail", update_comment.post.id)
+
 def delete_comment(request, comment_id):
     if not request.user.is_authenticated:
         return redirect("accounts:login")

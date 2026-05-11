@@ -53,7 +53,18 @@
                     <span class="comment-author">{{ comment.writer.profile.nickname }}</span>
                     <span class="comment-date">{{ comment.pub_date|date:"Y.m.d H:i" }}</span>
                 </div>
+
+                {% if edit_comment > 0 and edit_comment == comment.id %}
+                <form action="{% url 'main:update_comment' comment.id %}" method="post">
+                    {% csrf_token %}
+                    <div class="comment-input-row">
+                        <input type="text" id="content" name="content" placeholder="{{ comment.content }}" required>
+                        <button type="submit">수정 완료</button>
+                    </div>
+                </form>
+                {% else %}
                 <p class="comment-content">{{ comment.content }}</p>
+                {% endif %}
                 {% if comment.writer == user %}
                 <div class="comment-footer">
                     <a href="{% url 'main:edit_comment' comment.id %}" class="comment-edit">수정</a>
