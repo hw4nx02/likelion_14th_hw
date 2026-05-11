@@ -6,7 +6,7 @@
     <h2>태그 목록</h2>
     <div class="tag-grid">
         {% for tag in tags %}
-        <a href="{% url 'main:tag_blog_list' tag.id %}" class="tag-badge">
+        <a href="{% url 'main:tag_post_list' tag.id %}" class="tag-badge">
             #{{ tag.name }}
         </a>
         {% empty %}
