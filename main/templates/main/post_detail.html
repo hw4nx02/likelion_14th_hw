@@ -8,12 +8,12 @@
         <h1>{{ post.title }}</h1>
         <p>{{ post.category }}</p>
         {% for tag in post.tags.all %}
-        #{{ tag.name }}
+            #{{ tag.name }}
         {% endfor %}
     </div>
 
     <div class="detail-footer">
-        <span>작성자: {{ post.writer.profile.nickname }}</span>
+        <a href="{% url 'users:mypage' post.writer.id %}"> 작성자: {{ post.writer.profile.nickname }}</a>
         <span>작성일: {{ post.pub_date }}</span>
     </div>
 
@@ -64,12 +64,12 @@
                 </form>
                 {% else %}
                 <p class="comment-content">{{ comment.content }}</p>
-                    {% if comment.writer == user %}
-                    <div class="comment-footer">
-                        <a href="{% url 'main:edit_comment' comment.id %}" class="comment-edit">수정</a>
-                        <a href="{% url 'main:delete_comment' comment.id %}" class="comment-delete">삭제</a>
-                    </div>
-                    {% endif %}
+                {% if comment.writer == user %}
+                <div class="comment-footer">
+                    <a href="{% url 'main:edit_comment' comment.id %}" class="comment-edit">수정</a>
+                    <a href="{% url 'main:delete_comment' comment.id %}" class="comment-delete">삭제</a>
+                </div>
+                {% endif %}
                 {% endif %}
             </div>
             {% empty %}
