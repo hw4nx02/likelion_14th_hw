@@ -8,7 +8,7 @@
         <h1>{{ post.title }}</h1>
         <p>{{ post.category }}</p>
         {% for tag in post.tags.all %}
-            #{{ tag.name }}
+        #{{ tag.name }}
         {% endfor %}
     </div>
 
@@ -25,11 +25,11 @@
     </div>
 
     <div class="detail-likes">
-        <a href="{% url 'main:likes' post.id %}">
+        <a href="{% url 'main:post_likes' post.id %}">
             {% if user in post.like.all %}
-                취소
+            취소
             {% else %}
-                좋아요
+            좋아요
             {% endif %}
         </a>
         <span>{{ post.like_count }}개</span>
@@ -63,6 +63,18 @@
                 <div class="comment-meta">
                     <span class="comment-author">{{ comment.writer.profile.nickname }}</span>
                     <span class="comment-date">{{ comment.pub_date|date:"Y.m.d H:i" }}</span>
+
+                    <div class="comment-likes">
+                        <a href="{% url 'main:comment_likes' comment.id %}">
+                            {% if user in comment.like.all %}
+                            취소
+                            {% else %}
+                            좋아요
+                            {% endif %}
+                        </a>
+                        <span>{{ comment.like_count }}개</span>
+                    </div>
+
                 </div>
 
                 {% if edit_comment > 0 and edit_comment == comment.id %}
