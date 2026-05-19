@@ -24,6 +24,17 @@
         <p>{{ post.content }}</p>
     </div>
 
+    <div class="detail-likes">
+        <a href="{% url 'main:likes' post.id %}">
+            {% if user in post.like.all %}
+                취소
+            {% else %}
+                좋아요
+            {% endif %}
+        </a>
+        <span>{{ post.like_count }}개</span>
+    </div>
+
     <div class="detail-actions">
         {% if post.writer == user %}
         <a href="{% url 'main:edit_post' post.id %}" class="btn-outline">수정</a>

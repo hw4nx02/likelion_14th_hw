@@ -12,6 +12,8 @@ class Post(models.Model):
     image = models.ImageField(blank=True, null=True, verbose_name='post_image')
     pub_date = models.DateField(auto_now_add=True)
     tags = models.ManyToManyField(Tag, related_name="posts", blank=True)
+    like = models.ManyToManyField(User, related_name="likes", blank=True)
+    like_count = models.PositiveIntegerField(default=0)
 
     # 20자 넘으면 ... 붙이고 요약
     def summary(self):

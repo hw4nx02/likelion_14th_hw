@@ -174,3 +174,18 @@ def tag_post_list(request, tag_id):
     tag = get_object_or_404(Tag, pk=tag_id)
     posts = tag.posts.all()
     return render(request, "main/tag_post_list.html", {"tag": tag, "posts": posts})
+
+# 좋아요 클릭 처리
+def likes(request, post_id):
+    post = get_object_or_404(Post, pk=post_id)
+
+    if request.user in post.like.all():
+        post.like.remove(request.user)
+        post.like_count -= 1
+        post.save()
+    else:
+        post.like.add(request.user)
+        post.like_count += 1
+        post.save()
+    
+    return redirect("main:post_detail", post.id)
