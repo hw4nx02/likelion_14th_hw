@@ -38,26 +38,18 @@ def signup(request):
             messages.add_message(request, messages.INFO, "비밀번호 확인이 일치하지 않습니다.")
             return render(request, "accounts/signup.html")
 
-        newuser = User.objects.create_user(
+        new_user = User.objects.create_user(
             username=request.POST["username"],
             password=request.POST["password"]
         )
 
-        nickname = request.POST["nickname"]
-        age = request.POST["age"]
-        major = request.POST["major"]
-        profile_image = request.FILES.get("profile_image")
-
-        profile = Profile(
-            user = newuser,
-            nickname = nickname,
-            age = age,
-            major = major,
-            profile_image = profile_image,
-        )
+        profile = new_user.profile
+        profile.nickname = request.POST["nickname"]
+        profile.major = request.POST["major"]
+        profile.profile_image = request.FILES.get("profile_image")
         profile.save()
-
-        auth.login(request, newuser)
+        
+        auth.login(request, new_user)
         return redirect("main:blog")
     
     return render(request, "accounts/signup.html")
